@@ -1,0 +1,163 @@
+{% load tz %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            table {
+                border-collapse: collapse; // remove unsightly space
+                border: 1px solid #3f2b21;;
+              }
+              tr {
+                
+              }
+              thead { /* Looks like tr*/
+                
+              }
+              tfoot {
+                
+              }
+              th, /* cells in thead */
+              td {
+                padding: .5rem;
+                border-bottom: 1px solid #ccae51;
+              }
+              th {
+                text-align: left;
+                background-color: #ccae51;
+                color: white;
+              }
+              thead tr:first-child,
+              thead tr:first-child th {
+                background-color: #3f2b21;
+                text-align: center;
+                border-left: 1px solid white;
+                font-size: 1.125rem;
+              }
+              table caption { // displays at the top pf table by default
+                font-weight: bold;
+                text-align: left;
+                font-size: 1.25rem;
+                padding: .5rem 0;
+                color: #ccae51;
+              }
+              tfoot tr {
+                background-color: #3f2b21;
+                color: white;
+                font-weight: bold;
+              }
+              /*tfoot tr td:first-child {
+                border: none;
+                background-color: white;
+              }*/
+              tfoot tr:last-child td {
+                border-bottom: none;
+              }
+              /* Striped rows */
+              tbody tr:nth-child(even){
+                background-color: rgba(204,174,81,.2);
+              }
+              
+              /* Style col groups */
+              /*.retail {
+                background-color: #eee;
+              }
+              .case {
+                background-color: #efe;
+              }
+              .item {
+                background-color: #eee;
+              }*/
+              
+              /* Making tables responsive - https://adrianroselli.com/2017/11/a-responsive-accessible-table.html */
+              
+              .table-scroll { /* simplest option add a div with class table-scroll */
+                overflow: auto;
+              }
+              
+              /* Or layout the table as block */
+              @media (max-width: 700px) {
+                table {
+                  border: none;
+                }
+                table,
+                tr,
+                td {
+                  display: block;
+                }
+                thead,
+                th {
+                  display: none;
+                }
+                tbody,
+                tfoot {
+                  border: 1px solid #3f2b21;
+                }
+                td:nth-child(1)::before { content: "Item #: "; font-weight: bold; }
+                td:nth-child(2)::before { content: "Product or Service: "; font-weight: bold; }
+                td:nth-child(3)::before { content: "Price (ea): "; font-weight: bold; }
+                td:nth-child(4)::before { content: "Retail Price (case): "; font-weight: bold; }
+                td:nth-child(5)::before { content: "Case Discount: "; font-weight: bold; }
+                td:nth-child(6)::before { content: "12+ Case Price: "; font-weight: bold; }
+                td:nth-child(7)::before { content: "12+ Case Discount: "; font-weight: bold; }
+                
+                tfoot td:nth-child(1)::before,
+                tfoot td:nth-child(2)::before { content: ""; }
+              }
+              
+              body {
+                padding: 1rem;
+              }
+        </style>
+    </head>
+    <body>
+
+        <!--<div class="table-scroll" role="region" aria-labelledby="pricelist" tabindex="0">-->
+        <table>
+          <caption id="pricelist">SMS Details</caption>
+          <colgroup>
+            <col class="item">
+            <col>
+            <col class="retail" span="2">
+            <col class="case" span="3">
+          </colgroup>
+          <thead>
+            <th scope="col">SL</th>
+            <th scope="col">Mobile No</th>
+            <th scope="col">SMS Body</th>
+            <th scope="col">Response Body</th>
+            <th scope="col">Created At</th>
+          </thead>
+          <tbody>
+            {% for log in sms_logs %}
+            <tr>
+              <td>{{forloop.counter}}</td><!-- use rowspan to combine 2 or more rows  -->
+              <td>{{log.mobile_no}}</td>
+              <td>{{log.sms_body}}</td>
+              <td>{{log.response_data}}</td>
+              <td>{{log.created_at}}</td>
+            </tr> 
+            {% endfor %}   
+          </tbody>
+          <tfoot>
+            <th scope="col">SL</th>
+            <th scope="col">Mobile No</th>
+            <th scope="col">SMS Body</th>
+            <th scope="col">Response Body</th>
+            <th scope="col">Created At</th>
+          </tfoot>
+        </table>
+        <!--  </div> -->
+        
+        
+        <script src="" async defer></script>
+    </body>
+</html>
