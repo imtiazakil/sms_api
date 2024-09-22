@@ -5,6 +5,9 @@ from django.http import JsonResponse
 from django.contrib import messages
 # Create your views here.
 
+def home(request):
+    return render(request, 'sms.html')
+
 def send_sms(request):
     if request.method == "POST":
         mobile_no = request.POST.get('mobile_no')

@@ -25,7 +25,9 @@ SECRET_KEY = '9ru)k*tfmdo-us82)45#3_p*goua1x&u_28)ppdcu!cn7=p-m#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = ['https://smsapp.imtiazakil.com']
 
 
 # Application definition
